@@ -44,18 +44,18 @@ public class MainActivity extends AppCompatActivity {
 
     public void saveMoneyLiveBetterAtWalmart(View v)
     {
-        int size = ArduinoInterface.pins.size();
 
         if (BluetoothHelper.btSocket!=null)
         {
             try
             {
-                for (int i = 0; i < size ; i++)
+                String pins = "";
+                for (String str : ArduinoInterface.pins)
                 {
-
-                    BluetoothHelper.btSocket.getOutputStream().write(ArduinoInterface.pins.get(i).getBytes());
+                    pins += str;
+                    BluetoothHelper.btSocket.getOutputStream().write(str.getBytes());
                 }
-                msg("Turned off");
+                msg("Pins " + pins);
             }
             catch (IOException e)
             {
